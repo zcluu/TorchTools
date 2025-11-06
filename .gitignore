@@ -1,0 +1,132 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+share/python-wheels/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+htmlcov/
+coverage.xml
+
+# PyBuilder
+target/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IPython history
+profile_default/
+ipython_config.py
+
+# pyenv
+python-version
+
+# Environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# virtualenv
+*.env
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Large dataset / model artifacts
+/datasets/
+data/
+data_raw/
+*.mat
+*.h5
+*.npz
+
+# Model checkpoints and weights
+*.pth
+*.pt
+checkpoints/
+weights/
+models/
+
+# Logs and results
+logs/
+*.log
+results/
+runs/
+tensorboard_logs/
+
+# Experiment tracking
+wandb/
+mlruns/
+
+# CUDA and build artifacts
+*.o
+*.obj
+*.so
+
+# Editor temp files
+*~
+*.swp
+*.swo
+
+# Ignore local config files
+.env
+.env.*
+secrets.json
+
+# Ignore coverage and mypy cache
+.mypy_cache/
+
+# OS generated files
+Icon?

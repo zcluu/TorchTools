@@ -1,0 +1,36 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch-tools"
+version = "0.0.0"
+description = "PyTorch port of Sionna utilities and modules (sionna_torch)."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [ { name = "zclu-zju" } ]
+requires-python = ">=3.8"
+keywords = ["pytorch","torch","tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "torch",
+]
+
+# Deployment extras: intentionally empty (no TensorFlow). Add platform-specific
+# or extra runtime dependencies here if needed for a deployment variant.
+deploy = []
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
