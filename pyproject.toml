@@ -24,9 +24,6 @@ dependencies = [
     "torch",
 ]
 
-# Deployment extras: intentionally empty (no TensorFlow). Add platform-specific
-# or extra runtime dependencies here if needed for a deployment variant.
-deploy = []
 
 [tool.setuptools]
 include-package-data = true
