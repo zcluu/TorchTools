@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "torch-tools"
+name = "torchtools"
 version = "0.0.0"
 description = "PyTorch port of Sionna utilities and modules (sionna_torch)."
 readme = "README.md"
@@ -30,4 +30,4 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*"]
+include = ["torchtools", "torchtools.*", "torchtools/**", "torchtools/**"]
