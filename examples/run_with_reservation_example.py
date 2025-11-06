@@ -7,7 +7,7 @@ import time
 
 import torch
 
-from src import (
+from torchtools import (
     run_training_with_reservation,
     estimate_gpu_usage_by_probe,
     make_probe_fn,
