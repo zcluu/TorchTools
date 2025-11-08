@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "torchtools"
 version = "0.0.0"
-description = "PyTorch port of Sionna utilities and modules (sionna_torch)."
+description = "PyTorch tools."
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [ { name = "zclu-zju" } ]
