@@ -92,6 +92,10 @@ def reserve_gpu_for_training(
             time.sleep(0.2)
 
     fence_tensor = None
+    # track whether we still hold the file lock/descriptor. We'll usually
+    # release the file lock before yielding so other cooperative processes
+    # can make their own reservation attempts (avoid long blocking).
+    lock_held = True
     try:
         if fence:
             # try to allocate a fence that occupies free memory except the training part
@@ -141,10 +145,24 @@ def reserve_gpu_for_training(
 
                 if fence_tensor is None:
                     warnings.warn(
-                        "Failed to allocate fence tensor; proceeding with file lock only"
+                        "Failed to allocate fence tensor; proceeding without fence"
                     )
 
-        # yield control to caller while lock (+ optional fence) held
+        # We release the filesystem lock here. The fence_tensor (if any)
+        # keeps the actual GPU memory reserved for the lifetime of this
+        # context, so holding the file lock for the whole training run is
+        # unnecessary and causes other cooperative processes to block.
+        try:
+            fcntl.flock(fd.fileno(), fcntl.LOCK_UN)
+        except Exception:
+            pass
+        try:
+            fd.close()
+        except Exception:
+            pass
+        lock_held = False
+
+        # yield control to caller while fence (optional) held
         yield
 
     finally:
@@ -161,12 +179,13 @@ def reserve_gpu_for_training(
         except Exception:
             pass
 
-        # release file lock and close fd
-        try:
-            fcntl.flock(fd.fileno(), fcntl.LOCK_UN)
-        except Exception:
-            pass
-        try:
-            fd.close()
-        except Exception:
-            pass
+        # release file lock and close fd only if we still hold it
+        if lock_held:
+            try:
+                fcntl.flock(fd.fileno(), fcntl.LOCK_UN)
+            except Exception:
+                pass
+            try:
+                fd.close()
+            except Exception:
+                pass
